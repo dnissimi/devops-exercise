@@ -5,16 +5,14 @@ python:
     - 3.5
     - 3.6
 
-#install: 
-#	- pip install -r requirements/dev.txt
-#	- pip install codecov
+install: 
+   - pip install -r requirements/dev.txt
+   - pip install codecov
 
-#script:	
-#	- coverage erase
-#	- coverage run test/test-http.py "http://127.0.0.1:8080/api/v1/about" && coverage html
-#	- python test/test-http.py "http://127.0.0.1:8080/api/v1/about" 
+script:	
+   - coverage erase
+   - coverage run test/test-http.py "http://127.0.0.1:8080/api/v1/about" && coverage html
 
-# script: pytest
 
-#after_success:
-#	- codecov
+after_success:
+   - codecov
