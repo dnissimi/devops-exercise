@@ -1,2 +1,17 @@
 language: python
 
+python:
+	- 3.4
+	- 3.5
+	- 2.7
+
+install: 
+	- pip install -r requirements/dev.txt
+	- pip install codecov
+
+script:
+	- coverage erase
+	- coverage run test/test-http.py "http://127.0.0.1:8080/api/v1/about" && coverage html
+
+after_success:
+	- codecov
