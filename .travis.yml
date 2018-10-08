@@ -11,7 +11,7 @@ install:
 
 #start app
 before_script:
-#   - export FLASK_APP="$TRAVIS_BUILD_DIR/application.py"
+   - export FLASK_APP="$TRAVIS_BUILD_DIR/application.py"
    - export FLASK_DEBUG=1
    - python application.py &
    - sleep 5
@@ -19,8 +19,8 @@ before_script:
 # unit test http 200
 script:	
 #   - coverage erase
-#   - coverage run test/test-http.py "http://127.0.0.1:8080/api/v1/about" && coverage html
-   - python test/test-http.py "http://127.0.0.1:8080/api/v1/about"
+#   - coverage run test/test-http.py "http://127.0.0.1:8080/api/v1.0/about" && coverage html
+   - python test/test-http.py "http://127.0.0.1:8080/api/v1.0/about"
 
 
 after_success:
