@@ -13,7 +13,7 @@ install:
 before_script:
 #   - export FLASK_APP="$TRAVIS_BUILD_DIR/application.py"
    - export FLASK_DEBUG=1
-   - python application.py &
+   - flask application.py &
 
 # unit test http 200
 script:	
