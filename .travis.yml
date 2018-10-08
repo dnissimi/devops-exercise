@@ -7,7 +7,7 @@ python:
 
 install: 
    - pip install -r requirements/dev.txt
-#   - pip install codecov
+   - pip install codecov
 
 #start app
 before_script:
@@ -18,10 +18,10 @@ before_script:
 
 # unit test http 200
 script:	
-#   - coverage erase
-#   - coverage run test/test-http.py "http://127.0.0.1:8080/api/v1.0/about" && coverage html
-   - python test/test-http.py "http://127.0.0.1:8080/api/v1.0/about"
+   - coverage erase
+   - coverage run python test/test-http.py "http://127.0.0.1:8080/api/v1.0/about" && coverage html
+#   - python test/test-http.py "http://127.0.0.1:8080/api/v1.0/about"
 
 
 after_success:
-#   - codecov
+   - codecov
