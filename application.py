@@ -1,7 +1,3 @@
-#!/Library/Frameworks/Python.framework/Versions/2.7/bin/python
-
-##!bin/python
-
 from flask import Flask, jsonify, abort, make_response, request, url_for
 
 
