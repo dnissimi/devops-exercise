@@ -14,6 +14,7 @@ before_script:
 #   - export FLASK_APP="$TRAVIS_BUILD_DIR/application.py"
    - export FLASK_DEBUG=1
    - python application.py &
+   - sleep 5
 
 # unit test http 200
 script:	
