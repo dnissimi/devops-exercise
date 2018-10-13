@@ -1,23 +1,31 @@
-language: python
+sudo: required
 
-python:
-    - 2.7
-#    - 3.5
-#    - 3.6
+services:
+  - docker
 
-install: 
-   - pip install -r requirements/dev.txt
-   - pip install codecov
+env:
+  global:
+    - REGISTRY_USER=dnissimi
+    - secure: "Qih5bFCcu2wKRN/AaryIJPfvkn8Vk6qH3ylzzrnVD6i/RiEq7U/Xu2D8hGtmz7YB29rf4X3SlFRZy55hyhmVXi9EFNaJ9LK32Bkyh4EI4byA9tDpCaoVcjg50a5PDw2RlaaiicB27NXRnsdwWlHTgG+/PwA9aVjfdJ18kOKasF9CCZkqxM1uPw3t7/28IW1hACfLyLDaLcsjRq0egxNpWTXH42hHltKbUSU0DlohBCiDk7TS+aD60ZOlfN2pm6pn7gatFERch6LyxLG3a6LqtdeSyXBAF/WCvDrYaE6ydjHiVv/rB+gMR9tE/mcP7frKCvN5bpyoCjqqNtG7ssvEAunwLy3DwRaTomjPBh1d5XqAwpp+UWg+QRKlQS4o/cYGzBTOT1kKel46GXEB42NyJh4uEm+lUnd/rGm0b7UnocEY1fOA3OiqFNvxrz2bUZDaQYN52MkO9xqukvw0LnDFmYeZzN0D3i4yFw31xcnYTeFbVaBgfiST81TqzNXsIGY2KDWs+xXFrB3Ul2d2UQGSilrVL6dRNf0HWzn6Iv54cy6XiS54LBFEOzuIF/X1PDJP+iRv/giqhP9dq4RuzmrkETsPK6oE4SLnb3Y3/sKkzxY+NcHYJZcx/v2lvoGSito1eN78jezSBpKeGRhxnQUjVK2ZNZrmvtQh6Gcd70b2Auc="
 
-#start app
+
 script:
-   - python application.py
+  - docker build -t dnissimi/devops-excercise .
+  - docker run -d dnissimi/devops-exercise
 
-# unit test http 200
-script:	
-   - coverage erase
-   - coverage run test/test-http.py "http://127.0.0.1:8080/api/v1/about" && coverage html
-
+after_script:
+  - docker images
+  - coverage erase
+  - coverage run test/test-http.py "http://127.0.0.1:8080/api/v1/about" && coverage html
 
 after_success:
-   - codecov
+  - codecov
+
+before_deploy:
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+
+deploy:
+  provider: script
+  script: docker push dnissimi/devops-exercise
+  on:
+    branch: master
