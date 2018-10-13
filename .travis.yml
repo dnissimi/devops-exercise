@@ -10,7 +10,7 @@ env:
 
 
 script:
-  - docker build -t dnissimi/devops-excercise .
+  - docker build -t dnissimi/devops-exercise .
   - docker run -d dnissimi/devops-exercise
 
 after_script:
