@@ -10,9 +10,17 @@ python:
 services:
   - docker
 
-env:
+env: >
   # user-definable variables
-  - IMAGE_NAME=dnissimi/devops-exercise TEST_SERVICE_URL=http://127.0.0.1:8080/api/v1.0/about
+  IMAGE_NAME=dnissimi/devops-exercise
+  TEST_SERVICE_URL=http://127.0.0.1:8080/api/v1.0/about
+  AWS_EB_REGION=eu-west-1
+  AWS_EB_APP=devops-exercise
+  AWS_EB_ENV=DevopsExercise-env
+  AWS_EB_BUCKET_NAME=elasticbeanstalk-eu-west-1-487649374676
+  #AWS_EB_ACCESS_KEY_ID=
+  #AWS_EB_SECRET_ACCESS_KEY=
+  
 
 install:
   # install packages for testing environment 
@@ -46,7 +54,13 @@ after_success:
 before_deploy:
 
 deploy:
-  provider: script
-  script: docker push "${IMAGE_NAME}:latest" && docker push "${IMAGE_NAME}:${version}"
+  provider: elasticbeanstalk
+  access_key_id: "$AWS_EB_ACCESS_KEY_ID"
+  secret_access_key: "$AWS_EB_SECRET_ACCESS_KEY"
+  region: "$AWS_EB_REGION"  
+  app: "$AWS_EB_APP"
+  env: "$AWS_EB_ENV"
+  bucket_name: "$AWS_EB_BUCKET_NAME"
   on:
     branch: master
+
