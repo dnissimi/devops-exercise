@@ -24,7 +24,7 @@ before_script:
 
 script:
   # build Docker image and launch for unit test
-  - docker build -t "$IMAGE_NAME" .
+  - docker build --no-cache -t "$IMAGE_NAME" .
   - docker run -d -p 8080:8080 "$IMAGE_NAME"
 
   #display some status info
