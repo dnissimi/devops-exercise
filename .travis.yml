@@ -1,41 +1,26 @@
 sudo: required
-
 language: python
-
 python:
-# - 2.7
-# - 3.5
-  - 3.6
-
+- 3.6
 services:
-  - docker
-
+- docker
 env:
-  global:
-  - DOCKER_USER=dnissimi
-#  - DOCKER_PASS=<secure: ...>
-  - secure: "HsDkoNH8LGHyjucOUJy2lbQZ7x7TwWrAPysH2Y/2TzSlB6hWd0A89VZ3GrtRYLs0VE8KU//HtaSR7Wq8sEuweUochjncDq9HjLLKNbaxCprVmbxlkwM7BAZZguP1w7PmBfvKqdJ1DYyA6h/8gVL68dYk/NfNvdFwOZ+znvQay/u86IQ5kSk18xLtKI/pbO9tFSkI0IRgDNeBdCqcQTV0WIH+LrYJEmU3sv681e0v/YdkPQN2WSRZPNyHWLK0TNJp2QnoG2CdaJgWVWs5aSiW38jMOhnJ3RAXiFYlAuE2ajNv92BpNAGaoSxtJhZaVbgds11vV31X/8005Rkv76sG1NRPTybRxWhGmGv2R+3IrW/fw90Equ7nwLxpH1lI4k+K/xupf/DIQL2/VmSR6DzLKFHcfw035Pd06FO6r/HMuzVZTJTnYhXJh8ezbA+JxHivxgFJpVE5F97ldsbDzzxWipp1f821KgVD36PVAYa5IVV5zVdh9SpudrIyYir/yRJLRDyDcEei9DEzWYJL11jurZW0u/tFrnVqz+TwNULAspJqCR7UXKjQPzEGC6w2LD//IVjMVwoRM2rk24G/so4malSxSuIs7Yik51b16EkRf/2VDAjG5G87OR774Aw125E59JaMLanv4ffe7AbaKC45p+uq11Uj8SLpPgTpLx1KqB8="
-
-install: 
-  - pip install -r requirements/dev.txt
-
+  secure: bueAKs2o6zYgMYQBKRYShkFVCFeypV/7ml2FEUOhJvlSPhguY6qNRxHwrT1FBomC3ECr/Z6gE2F0lXy1h/GrC+ESsabEyYxO0goyxyNTB58eJNdafQPCYZlDnwSMvWbRJPCGG0VZu/XHbEfGppyHxFLiryS2Yjx3cf7sa/N/mtLQMpo+dd6aIHf+JW6e7gnBI1zkEtBZBJzEHUqmQ7QGkAWU2jThoeJM5qYg73MmLpwbdWcuJD+8rXm8PHlABRjn5NJsajHgEy1w5Js5YT2tXIWt8cFMXO9hgnl1K0FYIsNO3wYtBU+ZGqwkMcqdfAIh/uk5XVRoDvXIZVDOjMpMhJ2wIZCsbk72TjkUUjoBMB3uyOLiHVGg65JgYMIg3E3svt89lLhPE8X0NPV7TAlScCx0K6lkHqAkiQBojgD846TOroHN/hg7I49RcelZM+OPfYdCb/sETCIVwamL3Jad6gdKJ5GpikPZdHr8PpAi8MsnOqrQEKwjUYop4pRDNTIjTceNBvE3n4A2HOKthyZD/DAWCKlGWmYW9Nmw8bXlzm/zKB2nLN80b+FNB3Udc9svV3ZNmxOfR0K/zhYoRYF094GFOLViYaO3dKdlCu9mI760WjeMgMYIM4BPCDE/l12vLn7SMM5VN+ZHNfw3MMkEN3sjjl/pOANvWsGu56jRv8c=
+install:
+- pip install -r requirements/dev.txt
 script:
-  - docker build -t dnissimi/devops-exercise .
-  - docker run -d -p 8080:8080 dnissimi/devops-exercise
-
-#after_script:
-  - docker images
-  - docker ps
-  - sleep 5
-  - coverage erase
-  - coverage run test/test-http.py "http://127.0.0.1:8080/api/v1.0/about" && coverage html
-
+- docker build -t dnissimi/devops-exercise .
+- docker run -d -p 8080:8080 dnissimi/devops-exercise
+- docker images
+- docker ps
+- sleep 5
+- coverage erase
+- coverage run test/test-http.py "http://127.0.0.1:8080/api/v1.0/about" && coverage
+  html
 after_success:
-  - codecov
-
+- codecov
 before_deploy:
-  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
-
+- docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
 deploy:
   provider: script
   script: docker push dnissimi/devops-exercise
