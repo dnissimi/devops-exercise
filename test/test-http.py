@@ -4,5 +4,5 @@ import requests, sys
 r = requests.get(sys.argv[1])
 
 if r.status_code != 200:
-    print (int r.status_code)
+    print (r.status_code)
     exit(1)

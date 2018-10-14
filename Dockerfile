@@ -1,7 +1,7 @@
 FROM python:3.6-slim
 
 COPY . .
-RUN pip install -r requirements/dev.txt
+RUN pip install -r requirements/prod.txt
 
 EXPOSE 8080
 
