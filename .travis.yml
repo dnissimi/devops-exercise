@@ -21,7 +21,7 @@ install:
 
 script:
   - docker build -t dnissimi/devops-exercise .
-  - docker run -d dnissimi/devops-exercise
+  - docker run -d -p 8080:8080 dnissimi/devops-exercise
 
 #after_script:
   - docker images
