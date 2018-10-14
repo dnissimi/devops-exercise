@@ -5,7 +5,6 @@ services:
 
 env:
   global:
-    - DOCKER_EMAIL=dnissimi@gmail.com
     - DOCKER_USER=dnissimi
 #   - DOCKER_PASS=<secure: ...>
     - secure: "CYG/mUwsejhjm1uQ7ykLApA3cR7HCmNhpo2CpKR75MQoqIB25VuKbhuITd88taUyT8h8vfpSEh2qCAXXTtZd1XAMaQY/XYPWuk0sho9aNsi/gBSPQ64jzInWzqkZPG/MIoUlOdz9hGop6BFaGV/kMiank5g/KHAdZGK6NlNbVpd+f5LNgUFchN3ZOjJz7GQ2kMtf8YFRONNiPr4tz5VLqIsQVsHR+aAXo/rhHBuz7WUe7LiUbR/6P85eaaDzyTH2O+13oUyR7q01vDqmniOl9XQx/UaWfOLx42CmgrTlP17mxcOOp1mxVok29nmiCAkudXEM/WizFFHz2cat49EDpyuJA6VM1usUN6juUvWhD+Xx4xPUei6sBj0uDXTZg3+cucvz9NEmQygF3+ZOCB19c9pbVGqYEaTbzg/UfDDx2LTyuTnB7weGiqB1uHsF3ReCQprqoHXXBjuwubE9qXXBDYP3weRcaHOpHi3b1w++DbMbZfX22NX9keGL1JGsGKlVF4fuB8AASmFPYRD9hKa0Yz64OV8CmPVtX3mFnwUNuv5Awt+C8ZuvvDxIdOA/XhySaCo+P5+NRof3a1iRAcHSt/0KMT1ncxvaEe9WJO1suQazist/3LfZv7rkl+uUX5XbKPJPaGUOQ11FKHvmm3jqLhLFaBCToMhdUcqWuhTM3FE="
@@ -15,7 +14,7 @@ script:
   - docker build -t dnissimi/devops-exercise .
   - docker run -d dnissimi/devops-exercise
 
-after_script:
+script:
   - docker images
   - coverage erase
   - coverage run test/test-http.py "http://127.0.0.1:8080/api/v1/about" && coverage html
@@ -24,7 +23,7 @@ after_success:
   - codecov
 
 before_deploy:
-  - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
 
 deploy:
   provider: script
