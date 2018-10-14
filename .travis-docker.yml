@@ -23,7 +23,8 @@ after_success:
   - codecov
 
 before_deploy:
-  - docker login -u $DOCKER_USER -p "$DOCKER_PASS"
+  - echo "Docker password variable is $DOCKER_PASS"
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
 
 deploy:
   provider: script
