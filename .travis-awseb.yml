@@ -1,0 +1,45 @@
+sudo: required
+
+language: python
+
+python:
+# - 2.7
+# - 3.5
+  - 3.6
+
+services:
+  - docker
+
+env:
+  - IMAGE_NAME=dnissimi/devops-exercise TEST_SERVICE_URL=http://127.0.0.1:8080/api/v1.0/about
+
+install: 
+  - pip install -r requirements/dev.txt
+
+before_script:
+  - version="$(awk '$2 == "SERVICE_VERSION" { print $3; exit }' Dockerfile)"
+
+script:
+  - docker build -t "$IMAGE_NAME" .
+  - docker run -d -p 8080:8080 "$IMAGE_NAME"
+
+#display status
+  - docker images
+  - docker ps
+  - sleep 2
+
+#poor man's unit test
+  - python test/test-http.py "$TEST_SERVICE_URL"
+
+after_success:
+
+before_deploy:
+  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
+  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
+  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${version}"
+
+deploy:
+  provider: script
+  script: docker push "${IMAGE_NAME}:latest" && docker push "${IMAGE_NAME}:${version}"
+  on:
+    branch: master
