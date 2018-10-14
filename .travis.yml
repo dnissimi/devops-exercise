@@ -7,7 +7,7 @@ env:
   global:
     - DOCKER_USER=dnissimi
 #   - DOCKER_PASS=<secure: ...>
-    - secure: "Wj4Tvu187lxvQO251x4GNZ77Ha1j0rNLr9DJTcIu4r+kWg6CzWiDqGWAYwTnRGwhtqt7FHKg43GQYpTr4MNpWjZyf1/o3BmF5BjIYemT1gxiXvE7DuztMkU8z9wvQaWDRWS0Xmraj/DXJBVedUIc65IAlfXQlzcCBCWp1/oeSy68/zhRw++XUkYrHW1utcVR+JFGAMGXsBBaAT1JoK9uUzgeITnUa7DEfoyftV1gFMsk0f8tbqNzA1vSwmerOQ7ryLjo5uVgKV1ivbHaN1P8uf4ut6UEzEjg61sbdRCKL9hbzIU41eb3ZvbwXmBgONAp9bv1N7hy7xG7Yg6pNfsUAbHQZ/oGBz1vludV3DbJzqYqxblzMBo9SbByQEv09MGqQ5gl5aPOtT5ogqk77RQf4K0v+Pil/E205LTl0/S7pPlu2lnNwNdHhkQmTGTYa8l5K7PKqNJpTKhrynLQ5Tb0aHnhWUn21R1Np4Ga+JP3IeyLBZ4ta7LsgPaWyM5AaWP3835TzTKD7QrktcnwVVuqNCyAARAEJAEG5ZCpMP9cC606ZGDPo1aPc4P46saOXep3LfQnBQfA2St0YpkjxRiTq61u3VaGIT5Ki7Ble2VNfSdKEgRIrp+9DRJLdrQQBizsFzU+7kMc2xONGD+GbJrZ5IB/mpJNa85mQgz6unAPXFo="
+    - secure: "WuLAYbl4WQOhc82T3JvoSTumpDCsRKRSY3iCvI0+O0ABaU9OgNTp5DjcuqDinasN7hiOlFsABBFBVw+e4YHODWd2YsmWsUV/NqMlcniUGCa1t9cbCVHGamJ6CVj9HxMGqqUpWDG8hr/+mZRwYaFO7cQUEHT5AgX3r3jemTG1tcvpxSD/SjbTRtUo/FHdsY8TZGl8TgB9NJ17joZi9j5LyQETVxBsB7ZTxXxvDZ6SR2gKmL4/jXXff7zRhzEAsp4rd424tIfW3t1lUtZ0stlgjJAnEipkvEcIavmJWnD/u3NvkUTiupbVOeQwvze407U8x3uZzItmKrfalDaG3eg2I2X3LyCiqp7aAPjkjn4ilcPmOizS/Px6szPZ6bquJNQ3pFgBVNsitfAQqEhyN0UOm9OtZOlJLbZCT+nhlPKNQN+2wMfHb0Q9Vu6wGEGVlCsmCdCpVcCeFDMYqCokwPdrDVKzKSfAmK6XCmZiEFTFkLeNUcqyp9sqH+lCovUclh4FJLU+VDHP+msN3/CzSok/+GFDPIMQdCF9ix4nrzN7FRBH8x1+PDaOr5/oB+ZvWxn1ShziTgIp2jrTbU4MlOQRdkfGq1sB0oASKvqfrG+FLsuWM29qtuDwE3CacMYMyPYNg8/yZKzbP0En5Mdji5oWbU3SSIUow1XcKQm8uR4llPU="
 
 
 script:
@@ -23,7 +23,7 @@ after_success:
   - codecov
 
 before_deploy:
-  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - docker login -u $DOCKER_USER -p "$DOCKER_PASS"
 
 deploy:
   provider: script
