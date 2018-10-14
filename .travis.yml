@@ -29,7 +29,7 @@ script:
   - sleep 2
 
 #poor man's unit test
-  - test/test-http.py "$TEST_SERVICE_URL"
+  - python test/test-http.py "$TEST_SERVICE_URL"
 
 after_success:
 
