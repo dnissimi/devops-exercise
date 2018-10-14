@@ -1,11 +1,11 @@
 sudo: required
 
-language: python
+#language: python
 
-python:
+#python:
 # - 2.7
 # - 3.5
-  - 3.6
+#  - 3.6
 
 services:
   - docker
@@ -16,8 +16,8 @@ env:
 #   - DOCKER_PASS=<secure: ...>
 #   - secure: "CM4mihiIit9Jd0aqGIIe8H8WrDh4LQSqrZqPB2vcx1foRFe68TXElsnWciAGv8QhZcaaRYsI/x96eQZpydEOmIkeJB8WHhgHwNUs37DTEpdNDNdrWEQXhQBLgUSjbTEsdVkvKpQh1k5EvzyR9Gduzahe2TyYRpfMODYD4nV1HhZTqd5yMNHSg1nbwGK/h2kj9XfzXzQN0kqlRkPxa+VMag5nLQn+6WAGLz/cEGmeuZOeisrCgxgIxiymE5BJdxUiEMIhL+0FBLi7ADmAxoM4H8WdpfdvV5K6mYMUT+OR/R4RTt6f5awOW26KKH7ioZRyFbhzmZabTM96k0yk1AoZ2tz1C1ZEc5fr3W2YlNFCPmDu//Hx5ry40YadneFKGrbphZSDEk/WAHhk78ExgBVS9sUPDdfyrHpigw7G/G7PrwvvwPp8nNo6XROqRzPQVXhsXu2XokWQCl17xelQiBnY1qbQdGf4sFiVSdVFAkbMFTLGVjQC0egDAv5//BCwxDye/V8U0eY4jdObvNBwl67hYQqDOqAlb4D60jgp1IFl0ru9hG5vUdShIDu84lSyRdqKKPmw9BkchF0CB5RRYTSNSSiVwMWjSsuOZjH8ylsU7+nB753ja27ZqUo47aubWfT8l5mBFJAyh7lvgZR/vepjAoOOygUagG7CHMzxAlJVm68="
 
-install: 
-  - pip install -r requirements/dev.txt
+#install: 
+#  - pip install -r requirements/dev.txt
 
 script:
   - docker build -t dnissimi/devops-exercise .
