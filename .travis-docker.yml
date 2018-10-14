@@ -5,9 +5,10 @@ services:
 
 env:
   global:
-    - REGISTRY_USER=dnissimi
-#   - REGISTRY_PASS=<secure: ...>
-    - secure: "Gwwovotqw2k0MebOFGcergkfl8qP/Ip//DL3CbYCaAmh/bc6KPD8DXxmjqz0HvWFdkjt1rpBVlw3rNHkoLPVofcZO0zHPF0v/GmBXPQdq03iXT/Lwc8DypmFBVqygaWIF6qN5/lSZLomzJQENcyGeoeFW4nMszCBh+9SBDCQeB88d+nfcKkWPO3sgDy0p1Vwp4Jar5FduD8YYD1QZnCsOM/BPl6zczxvCgUKfv17KJgOUWY8GgC7cTpVEcEqtoS3chRB6RUl/TOvWNucMxnY0bpb10uCXK+hoLjnPCecMhbTzZgXbOU8fTv6N/3BYJmc41nmnJ7VqbS37tG80HP0QTBIEmWCslbNo+YAMl/b6E0Khu318PplaZ0FbnE2O3vVcSHSbfA87AD570aNL5as1LW9xLXvddWP60Mh0Ehzp9haUPd60N+mQV3AuyUlEzrfkks1nUwVd0A+9XeMwiP+1zbprgfbgz9HOyhg6AHyZlI+aoC5KEhg4yUU2i43K4F+ulhBpCJtoiREvQB1Y6FWFFPId9rYYLqobYKcSNR0hkrdjiK+QwSvYzgVmDQuyLmynirtgmXVYU61uzWYGMx/SuYXDprTkXrcl9HDUA4BTecIKul/QWMy08aOlGWZvVu5NfKbK/PMxNgJCsfmIc+W6xk9BUdJOAaRzrHIc6Syz6c="
+    - DOCKER_EMAIL=dnissimi@gmail.com
+    - DOCKER_USER=dnissimi
+#   - DOCKER_PASS=<secure: ...>
+    - secure: "CYG/mUwsejhjm1uQ7ykLApA3cR7HCmNhpo2CpKR75MQoqIB25VuKbhuITd88taUyT8h8vfpSEh2qCAXXTtZd1XAMaQY/XYPWuk0sho9aNsi/gBSPQ64jzInWzqkZPG/MIoUlOdz9hGop6BFaGV/kMiank5g/KHAdZGK6NlNbVpd+f5LNgUFchN3ZOjJz7GQ2kMtf8YFRONNiPr4tz5VLqIsQVsHR+aAXo/rhHBuz7WUe7LiUbR/6P85eaaDzyTH2O+13oUyR7q01vDqmniOl9XQx/UaWfOLx42CmgrTlP17mxcOOp1mxVok29nmiCAkudXEM/WizFFHz2cat49EDpyuJA6VM1usUN6juUvWhD+Xx4xPUei6sBj0uDXTZg3+cucvz9NEmQygF3+ZOCB19c9pbVGqYEaTbzg/UfDDx2LTyuTnB7weGiqB1uHsF3ReCQprqoHXXBjuwubE9qXXBDYP3weRcaHOpHi3b1w++DbMbZfX22NX9keGL1JGsGKlVF4fuB8AASmFPYRD9hKa0Yz64OV8CmPVtX3mFnwUNuv5Awt+C8ZuvvDxIdOA/XhySaCo+P5+NRof3a1iRAcHSt/0KMT1ncxvaEe9WJO1suQazist/3LfZv7rkl+uUX5XbKPJPaGUOQ11FKHvmm3jqLhLFaBCToMhdUcqWuhTM3FE="
 
 
 script:
@@ -23,7 +24,7 @@ after_success:
   - codecov
 
 before_deploy:
-  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+  - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
 
 deploy:
   provider: script
