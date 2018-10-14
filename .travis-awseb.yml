@@ -11,33 +11,39 @@ services:
   - docker
 
 env:
+  # user-definable variables
   - IMAGE_NAME=dnissimi/devops-exercise TEST_SERVICE_URL=http://127.0.0.1:8080/api/v1.0/about
 
-install: 
+install:
+  # install packages for testing environment 
   - pip install -r requirements/dev.txt
 
 before_script:
+  # get version info from Dockerfile
   - version="$(awk '$2 == "SERVICE_VERSION" { print $3; exit }' Dockerfile)"
 
 script:
+  # build Docker image and launch for unit test
   - docker build -t "$IMAGE_NAME" .
   - docker run -d -p 8080:8080 "$IMAGE_NAME"
 
-#display status
+  #display some status info
   - docker images
   - docker ps
   - sleep 2
 
-#poor man's unit test
+  # poor man's unit test
   - echo $TEST_SERVICE_URL
   - python test/test-http.py "$TEST_SERVICE_URL"
 
 after_success:
-
-before_deploy:
+  # push image to DockerHub
   - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${version}"
+  - docker push "${IMAGE_NAME}:latest" && docker push "${IMAGE_NAME}:${version}"
+
+before_deploy:
 
 deploy:
   provider: script

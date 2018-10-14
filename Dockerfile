@@ -1,11 +1,14 @@
 FROM python:3.6-slim
 
-ENV SERVICE_VERSION 0.1
+ENV SERVICE_VERSION 0.2
 
-COPY . .
+WORKDIR ./app
+
+COPY ./app ./app
+
 RUN pip install -r requirements/prod.txt
 
 EXPOSE 8080
 
-ENTRYPOINT python ./application.py
+ENTRYPOINT python ./app.py
 
