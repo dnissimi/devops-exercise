@@ -14,7 +14,7 @@ script:
   - docker build -t dnissimi/devops-exercise .
   - docker run -d dnissimi/devops-exercise
 
-script:
+after_script:
   - docker images
   - coverage erase
   - coverage run test/test-http.py "http://127.0.0.1:8080/api/v1/about" && coverage html
