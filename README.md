@@ -1,6 +1,3 @@
-# devops-exercise
-This project realizes an exercise demonstrating the containerization and deployment of a service.
-
 # Welcome to my DevOps Exercise
 
 
@@ -43,4 +40,4 @@ Upon deployment, AWS EB, the service can be accessed at [this URL](http://devops
 
 The following  diagram summarizes the flow implemented in this exercise.
 
-![Sequence Diagram](https://github.com/dnissimi/devops-exercise/blob/master/images/Screen%20Shot%202    018-10-15%20at%204.22.51.png?raw=true)
+![Sequence Diagram](https://github.com/dnissimi/devops-exercise/blob/master/images/Screen%20Shot%202018-10-15%20at%204.22.51.png?raw=true)
