@@ -17,8 +17,9 @@ If you were to fork this project, there are several manual steps you would have 
 
 You are encouraged to make the following configurations in your environment in order to customize for your project:
 
- - Define the following environment variables within the **Settings** section of your Travis-CI repo.  They are used to store you credentials to Docker and AWS EB.
-![Travis-CI Environment Variables](https://github.com/dnissimi/devops-exercise/blob/master/images/Screen%20Shot%202018-10-15%20at%203.45.43.png?raw=true)
+ - Define the following environment variables within the **Settings** section of your Travis-CI repo.  They are used to store your credentials to Docker and AWS EB.
+
+ - ![Travis-CI Environment Variables](https://github.com/dnissimi/devops-exercise/blob/master/images/Screen%20Shot%202018-10-15%20at%203.45.43.png?raw=true)
  - Define the appropriate values for the environment variables listed the **.travis.yml** file in the root of this repo
  - Update your **Dockerfile** accordingly.  Note that .travis.yml obtains the Docker version tag form the Dockerfile environment variable **SERVICE_VERSION**.  We encourage using this variable in your Dockerfile.
  - Unit test and other settings (such as python requirements, etc..) may be configured as needed
@@ -42,14 +43,4 @@ Upon deployment, AWS EB, the service can be accessed at [this URL](http://devops
 
 The following  diagram summarizes the flow implemented in this exercise.
 
-```mermaid
-sequenceDiagram
-Actor ->> Actor: git commit
-Actor ->> GitHub: git push -u origin master
-GitHub -->> Travis: Push trigger
-Travis ->> Travis: Setup / Clone repo
-Travis ->> Travis: Build
-Travis ->> Travis: Docker Run
-Travis ->> Travis: Unit Test
-Travis ->> DockerHub: Tag / push Docker image
-Travis ->> AWS EB: Deploy Docker container to AWS
+![Sequence Diagram](https://github.com/dnissimi/devops-exercise/blob/master/images/Screen%20Shot%202    018-10-15%20at%204.22.51.png?raw=true)
