@@ -27,8 +27,6 @@ Travis-CI is configured by default to begin the build process upon **push** oper
 
 We recommend changing the value of SERVICE_VERSION in the Dockerfile for your branch. 
 
-The files listed within the [.travisignore](https://github.com/dnissimi/devops-exercise/blob/master/.travisignore) file will not trigger a build.
-
 Only a push to the **master branch** will trigger a production deployment to AWS EB.  Other branches will only be built and pushed to DockerHub.
 
 Upon deployment, AWS EB, the service can be accessed at [this URL](http://devopsexercise-env.94vr5xphmw.eu-west-1.elasticbeanstalk.com/api/v1.0/about). 
