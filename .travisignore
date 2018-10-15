@@ -1,0 +1,9 @@
+.github/*
+material/*
+.editorconfig
+.gitignore
+CHANGELOG
+LICENSE
+*.md
+git
+
