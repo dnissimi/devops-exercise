@@ -57,7 +57,7 @@ deploy:
   region: "$AWS_EB_REGION"  
   app: "$AWS_EB_APP"
   env: "$AWS_EB_ENV"
-#  bucket_name: "$AWS_EB_BUCKET_NAME"
+  bucket_name: "$AWS_EB_BUCKET_NAME"
   on:
     branch: master
 
