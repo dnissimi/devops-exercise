@@ -3,7 +3,7 @@
 
 ## Overview
 
-This exercise demonstrates the integration of **Github**, **Travis-CI**, **Docker** and **AWS ElasticBeanstalk** to build, test and deploy a Python script.
+This exercise demonstrates the integration of **Github**, **Travis-CI**, **Docker** and **AWS ElasticBeanstalk** to build, test and deploy a Python / Flask application.
 
 ## Prerequisites & Setup
 If you were to fork this project, there are several manual steps you would have to complete in order to build out the complete CI/CI pipeline
