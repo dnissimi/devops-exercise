@@ -36,7 +36,7 @@ stages:
 jobs:
   include:
   - stage: Setup
-    install:
+    script:
       # install packages for testing environment 
       - pip install -r requirements/dev.txt
     
