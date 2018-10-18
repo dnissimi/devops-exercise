@@ -12,7 +12,7 @@ application.config['JSON_AS_ASCII'] = False
 ## 'about' method
 @application.route('/api/v1.0/about', methods=['GET'])
 def about():
-    return make_response(jsonify({'about': 'This is a RESTful test harness for the Tikal interview assignment'}), 200)
+    return make_response(jsonify({'about': 'This is a RESTful test harness for Tikal'}), 200)
     
 
 ## jsonified error request for get_task method
